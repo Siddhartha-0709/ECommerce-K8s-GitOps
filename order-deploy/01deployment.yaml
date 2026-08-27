@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  labels:
+    app: order
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+      - name: order
+        image: docker.io/siddhartha0709/ecommerceprojectmern-order-service:latest
+        ports:
+        - containerPort: 3004
+        env:
+         - name: MONGO_URI
+           value: mongodb://mongo:27017/order-db
+         - name: ALLOWED_ORIGIN
+           value: "*"

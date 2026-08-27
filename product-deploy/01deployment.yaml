@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product
+  labels:
+    app: product
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: product
+  template:
+    metadata:
+      labels:
+        app: product
+    spec:
+      containers:
+      - name: product
+        image: docker.io/siddhartha0709/ecommerceprojectmern-product-service:latest
+        ports:
+        - containerPort: 3002
+        env:
+         - name: MONGO_URI
+           value: mongodb://mongo:27017/product-db
+         - name: ALLOWED_ORIGIN
+           value: "*"

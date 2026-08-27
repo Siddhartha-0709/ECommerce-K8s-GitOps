@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart
+  labels:
+    app: cart
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels:
+        app: cart
+    spec:
+      containers:
+      - name: cart
+        image: docker.io/siddhartha0709/ecommerceprojectmern-cart-service:latest
+        ports:
+        - containerPort: 3003
+        env:
+         - name: MONGO_URI
+           value: mongodb://mongo:27017/cart-db
+         - name: ALLOWED_ORIGIN
+           value: "*"

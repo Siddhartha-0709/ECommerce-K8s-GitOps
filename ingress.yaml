@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ecommerce-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+    - http:
+        paths:
+          - path: /auth(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: auth
+                port:
+                  number: 3001
+
+          - path: /product(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: product
+                port:
+                  number: 3002
+
+          - path: /order(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: order
+                port:
+                  number: 3004
+
+          - path: /cart(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: cart
+                port:
+                  number: 3003          

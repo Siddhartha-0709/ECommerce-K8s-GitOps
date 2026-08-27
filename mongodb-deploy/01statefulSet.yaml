@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+spec:
+  selector:
+    matchLabels:
+      app: mongo 
+  serviceName: "mongo"
+  replicas: 3 
+  minReadySeconds: 10 
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mongo
+        image: docker.io/mongo:latest
+        ports:
+        - containerPort: 27017
+          name: mongo
+        volumeMounts:
+        - name: www
+          mountPath: /data/db
+        args:
+          - "--replSet"
+          - "rs0"
+          - "--bind_ip_all"
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "oci-bv"
+      resources:
+        requests:
+          storage: 10Gi
