@@ -44,7 +44,7 @@ spec:
                 port:
                   number: 3003
 
-          - path: mongodb(/|$)(.*)
+          - path: /mongodb(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
