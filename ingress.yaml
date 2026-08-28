@@ -43,11 +43,3 @@ spec:
                 name: cart
                 port:
                   number: 3003
-
-          - path: /mongodb(/|$)(.*)
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: mongo
-                port:
-                  number: 27017  
