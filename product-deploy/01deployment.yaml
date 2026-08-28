@@ -1,3 +1,4 @@
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,20 +16,24 @@ spec:
         app: product
     spec:
       containers:
-      - name: product
-        image: docker.io/siddhartha0709/ecommerceprojectmern-product-service:latest
-        ports:
-        - containerPort: 3002
-        livelinessProbe:
-          httpGet: /health
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        readinessProbe:
-          httpGet: /health
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        env:
-         - name: MONGO_URI
-           value: mongodb://mongo:27017/product-db
-         - name: ALLOWED_ORIGIN
-           value: "*"
+        - name: product
+          image: docker.io/siddhartha0709/ecommerceprojectmern-product-service:latest
+          ports:
+            - containerPort: 3002
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3002
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3002
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongo:27017/product-db
+            - name: ALLOWED_ORIGIN
+              value: "*"
