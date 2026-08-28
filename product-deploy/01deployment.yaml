@@ -19,6 +19,14 @@ spec:
         image: docker.io/siddhartha0709/ecommerceprojectmern-product-service:latest
         ports:
         - containerPort: 3002
+        livelinessProbe:
+          httpGet: /health
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet: /health
+          initialDelaySeconds: 5
+          periodSeconds: 5
         env:
          - name: MONGO_URI
            value: mongodb://mongo:27017/product-db
