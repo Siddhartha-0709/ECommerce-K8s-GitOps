@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: cart
-        image: docker.io/siddhartha0709/ecommerceprojectmern-cart-service:latest
+        image: docker.io/siddhartha0709/cart-service:latest
         ports:
         - containerPort: 3003
         env:
