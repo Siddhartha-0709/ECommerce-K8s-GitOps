@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: product
-          image: docker.io/siddhartha0709/ecommerceprojectmern-product-service:latest
+          image: docker.io/siddhartha0709/product-service:latest
           ports:
             - containerPort: 3002
           livenessProbe:

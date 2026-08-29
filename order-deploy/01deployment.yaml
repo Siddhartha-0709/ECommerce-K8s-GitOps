@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: order
-        image: docker.io/siddhartha0709/ecommerceprojectmern-order-service:latest
+        image: docker.io/siddhartha0709/order-service:latest
         ports:
         - containerPort: 3004
         env:
