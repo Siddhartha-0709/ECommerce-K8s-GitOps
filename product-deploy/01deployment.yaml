@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: product
-          image: docker.io/siddhartha0709/product-service:latest
+          image: docker.io/siddhartha0709/product-service:2a59ccb7c821a06df45bb221ed76d7f2c2e61689
           ports:
             - containerPort: 3002
           livenessProbe:
